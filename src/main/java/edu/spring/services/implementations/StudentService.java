@@ -52,4 +52,9 @@ public class StudentService implements IStudentService {
 		return dao.findByFirstName(firtsName);
 	}
 
+	@Override
+	public Student findByLastName(String lastName) {
+		return dao.findByLastName(lastName);
+	}
+
 }

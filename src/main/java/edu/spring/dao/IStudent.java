@@ -9,5 +9,6 @@ import edu.spring.model.Student;
 public interface IStudent extends CrudRepository<Student, Long> {
 	
 	public Student findByFirstName(String firtsName);
+	public Student findByLastName(String firtsName);
 	
 }

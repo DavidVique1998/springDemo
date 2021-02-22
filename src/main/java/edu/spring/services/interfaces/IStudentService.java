@@ -10,8 +10,8 @@ public interface IStudentService {
 	public Student findById(Long id); //retrieve
 	public void delete(Long id);	//delete
 	public List<Student> findAll(); //list
-	public Student findByFirtsName(String firtsName);// Get Student by firstName
-	public Student findByLastName(String lastName);// Get Student by firstName
+	public List<Student> findByFirtsName(String firtsName);// Get Student by firstName
+	public List<Student> findByLastName(String lastName);// Get Student by firstName
 	
 	//new method
 

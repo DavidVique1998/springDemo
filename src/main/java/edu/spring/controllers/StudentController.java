@@ -69,7 +69,7 @@ public class StudentController {
 	public ResponseEntity<?> update(@RequestBody Student c) {
 		try {
 			service.save(c);
-			return ResponseEntity.status(HttpStatus.CREATED).body(c);
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body(c);
 		}catch(Exception e){
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
@@ -90,8 +90,8 @@ public class StudentController {
 	public ResponseEntity<?> findByFirtsName(@PathVariable String firtsName) {
 		
 		try {
-			Student ps = service.findByFirtsName(firtsName);
-			if(ps!=null)
+			List<Student>  ps = service.findByFirtsName(firtsName);
+			if(!ps.isEmpty())
 				return ResponseEntity.ok().body(ps);
 			else
 				return ResponseEntity.noContent().build();
@@ -104,8 +104,8 @@ public class StudentController {
 	public ResponseEntity<?> findByLastName(@PathVariable String lastName) {
 		
 		try {
-			Student ps = service.findByFirtsName(lastName);
-			if(ps!=null)
+			List<Student>  ps = service.findByLastName(lastName);
+			if(!ps.isEmpty())
 				return ResponseEntity.ok().body(ps);
 			else
 				return ResponseEntity.noContent().build();

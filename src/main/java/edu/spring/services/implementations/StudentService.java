@@ -48,12 +48,12 @@ public class StudentService implements IStudentService {
 	}
 
 	@Override
-	public Student findByFirtsName(String firtsName) {
+	public List<Student>  findByFirtsName(String firtsName) {
 		return dao.findByFirstName(firtsName);
 	}
 
 	@Override
-	public Student findByLastName(String lastName) {
+	public List<Student>  findByLastName(String lastName) {
 		return dao.findByLastName(lastName);
 	}
 

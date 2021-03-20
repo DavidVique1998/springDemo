@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.spring.model.Student;
+import edu.spring.repositories.IStudentJpaRepository;
 import edu.spring.services.interfaces.IStudentService;
 
 @RestController
@@ -24,6 +26,7 @@ import edu.spring.services.interfaces.IStudentService;
 public class StudentController {
 	@Autowired
 	private IStudentService service;
+	
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> retrieve(@PathVariable(value="id") Long id) {
@@ -105,6 +108,24 @@ public class StudentController {
 		
 		try {
 			List<Student>  ps = service.findByLastName(lastName);
+			if(!ps.isEmpty())
+				return ResponseEntity.ok().body(ps);
+			else
+				return ResponseEntity.noContent().build();
+		}catch(Exception e){
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+	}
+	
+	@GetMapping("/lastName/pages")
+	public ResponseEntity<?> findByLastNameByPage(
+			@RequestParam(defaultValue="") String lastName, 
+			@RequestParam(defaultValue="0") int page, 
+			@RequestParam(defaultValue="3") int size){
+		
+		try {
+			List<Student>  ps = service.findByLastNameByPage(lastName, page, size);
+			System.out.print("Llegaste");
 			if(!ps.isEmpty())
 				return ResponseEntity.ok().body(ps);
 			else

@@ -12,6 +12,8 @@ public interface IStudentService {
 	public List<Student> findAll(); //list
 	public List<Student> findByFirtsName(String firtsName);// Get Student by firstName
 	public List<Student> findByLastName(String lastName);// Get Student by firstName
+	public List<Student> findByLastNameByPage(String criteria, int page, int size);// Get Student by firstName
+	
 	
 	//new method
 
